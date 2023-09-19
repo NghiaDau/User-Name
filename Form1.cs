@@ -39,7 +39,7 @@ namespace DemoRegexReal
         private void txtTenTK_TextChanged(object sender, EventArgs e)
         {
             string pattern = @"^[a-zA-Z0-9_-]{3,15}$";
-            if (txtTenTK.Text != null)
+            if (txtTenTK.Text != "")
             {
                 if (Regex.IsMatch(txtTenTK.Text, pattern))
                 {
@@ -60,7 +60,7 @@ namespace DemoRegexReal
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
             string pattern = @"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-            if (txtEmail.Text != null)
+            if (txtEmail.Text != "")
             {
                 if (Regex.IsMatch(txtEmail.Text, pattern))
                 {
@@ -82,7 +82,7 @@ namespace DemoRegexReal
         {
 
             string pattern = @"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20}";
-            if (txtPass.Text != null)
+            if (txtPass.Text != "")
             {
                 if (Regex.IsMatch(txtPass.Text, pattern))
                 {
@@ -96,7 +96,7 @@ namespace DemoRegexReal
                     lblLoiMK.ForeColor = Color.Red;
                     lblLoiMK.Visible = true;
                 }
-                if (txtPassConfirm.Text != null)
+                if (txtPassConfirm.Text != "")
                 {
                     if (txtPass.Text != txtPassConfirm.Text)
                     {
@@ -117,7 +117,7 @@ namespace DemoRegexReal
 
         private void txtPassConfirm_TextChanged(object sender, EventArgs e)
         {
-            if (txtPass.Text != null) 
+            if (txtPass.Text != "") 
             {
                 if (txtPass.Text != txtPassConfirm.Text)
                 {
