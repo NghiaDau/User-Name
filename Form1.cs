@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,35 +14,37 @@ namespace DemoRegexReal
 {
     public partial class Form1 : Form
     {
+        ModelUserName modelUserName = new ModelUserName();
         public Form1()
         {
             InitializeComponent();
         }
 
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtFullName_TextChanged(object sender, EventArgs e)
         {
             string pattern = @"[0-9@#$%^~&`|'""{}\[\]\-\\_\\()!*+=?.,><:;//]";
-            if (Regex.IsMatch(txtHoTen.Text, pattern))
+            if (Regex.IsMatch(txtFullName.Text, pattern))
             {
-                if (txtHoTen.TextLength == 0)
+                if (txtFullName.TextLength == 0)
                 {
-                    txtHoTen.Text = "";
+                    txtFullName.Text = "";
                 }
                 else
                 {
-                    txtHoTen.Text = txtHoTen.Text.Remove(txtHoTen.TextLength - 1);
-                    txtHoTen.SelectionStart = txtHoTen.Text.Length;
+                    txtFullName.Text = txtFullName.Text.Remove(txtFullName.TextLength - 1);
+                    txtFullName.SelectionStart = txtFullName.Text.Length;
                 }
 
             }
         }
+
         private void txtTenTK_TextChanged(object sender, EventArgs e)
         {
             string pattern = @"^[a-zA-Z0-9_-]{3,15}$";
             if (txtTenTK.Text != "")
             {
-                if (Regex.IsMatch(txtTenTK.Text, pattern))
+                if (Regex.IsMatch(txtUserName.Text, pattern))
                 {
                     lblLoiTK.Text = "Tài khoản hợp lệ";
                     lblLoiTK.ForeColor = Color.Green;
@@ -165,22 +168,57 @@ namespace DemoRegexReal
             }
         }
 
+        private DataUser FieldInfo()
+        {
+            DataUser dataUser = new DataUser();
+
+            dataUser.UserName = txtUserName.Text;
+            dataUser.Email = txtEmail.Text;
+            dataUser.FullName = txtFullName.Text;
+            dataUser.Pasword = txtPass.Text;
+            dataUser.PhoneNumber = int.Parse(txtSDT.Text);
+
+            return dataUser;
+        }
+
+        private void Insert( DataUser newUser)
+        {
+
+            modelUserName.DataUser.Add(newUser);
+            
+            modelUserName.SaveChanges();
+
+        }
+
         private void btnDangKi_Click(object sender, EventArgs e)
         {
             if (txtEmail.Text != "" && txtSDT.Text != "" && txtPass.Text != "" &&
-                txtTenTK.Text != "" && txtPassConfirm.Text != "" && lblLoiEmail.ForeColor == Color.Green &&
+                txtUserName.Text != "" && txtPassConfirm.Text != "" && lblLoiEmail.ForeColor == Color.Green &&
                 lblLoiMK.ForeColor == Color.Green && lblLoiTK.ForeColor == Color.Green &&
                 lblLoiXacNhanMK.ForeColor == Color.Green && lblSDT.ForeColor == Color.Green)
             {
                 // xu li luu vao co so du lieu
-                MessageBox.Show("Đăng ký thành công!");
+                
+                DataUser newUser = modelUserName.DataUser.FirstOrDefault(p => p.UserName.Contains(txtUserName.Text));
+
+                if(newUser == null) {
+
+                    DataUser dataUser = FieldInfo();
+                    Insert(dataUser);
+
+                    MessageBox.Show("Dang ki thanhh cong");
+                }
+                else {
+                    MessageBox.Show("Da Co Ton Tai TK");
+                }
+
+                
             }
             else
             {
                 MessageBox.Show("Đăng ký không thành công!");
             }
         }
-
-
+ 
     }
 }

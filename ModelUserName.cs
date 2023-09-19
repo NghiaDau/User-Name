@@ -8,11 +8,11 @@ namespace DemoRegexReal
     public partial class ModelUserName : DbContext
     {
         public ModelUserName()
-            : base("name=ModelUserName")
+            : base("name=ModelUserName1")
         {
         }
 
-        public virtual DbSet<DataUser> DataUsers { get; set; }
+        public virtual DbSet<DataUser> DataUser { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
