@@ -25,7 +25,6 @@ namespace DemoRegexReal
         [StringLength(20)]
         public string Pasword { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? Dateofbirth { get; set; }
+        public int? PhoneNumber { get; set; }
     }
 }

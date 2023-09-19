@@ -10,6 +10,6 @@ create table DataUser
 	FullName nvarchar (60) not null,
 	Email nvarchar(50) not null,
 	Pasword nvarchar(20) not null,
-	Dateofbirth Date,
+	PhoneNumber int,
 	constraint DataUser_PK primary key(Username)
 )
