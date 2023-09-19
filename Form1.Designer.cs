@@ -226,7 +226,6 @@
             this.label6.Size = new System.Drawing.Size(58, 16);
             this.label6.TabIndex = 17;
             this.label6.Text = "Họ Tên :";
-            this.label6.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // txtHoTen
             // 
