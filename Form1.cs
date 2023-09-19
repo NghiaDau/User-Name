@@ -43,7 +43,7 @@ namespace DemoRegexReal
         private void txtTenTK_TextChanged(object sender, EventArgs e)
         {
             string pattern = @"^[a-zA-Z0-9_-]{3,15}$";
-            if (txtFullName.Text != "")
+            if (txtUserName.Text != "")
             {
                 if (Regex.IsMatch(txtUserName.Text, pattern))
                 {
@@ -58,6 +58,11 @@ namespace DemoRegexReal
                     lblLoiTK.Visible = true;
                 }
             }
+            else
+                lblLoiTK.Visible = false;
+
+
+
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
@@ -78,16 +83,16 @@ namespace DemoRegexReal
                     lblLoiEmail.Visible = true;
                 }
             }
+            else
+                lblLoiEmail.Visible = false;
         }
 
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
-
             string pattern = @"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20}";
-            if (txtPass.Text != "")
+            if (txtPass.Text != "" )
             {
-
-                if (!txtPass.Text.ToLower().Contains(txtUserName.Text))
+                if (!txtPass.Text.ToLower().Contains(txtUserName.Text)  )
                 {
                     if ( Regex.IsMatch(txtPass.Text, pattern))
                     {
@@ -103,11 +108,28 @@ namespace DemoRegexReal
                         lblLoiMK.Visible = true;
                     }
                 }
-                else
+                else if(txtUserName.Text !="")
                 {
                     lblLoiMK.Text = "Mật khẩu không được chứa tên tài khoản";
                     lblLoiMK.ForeColor = Color.Red;
                     lblLoiMK.Visible = true;
+                }
+                else
+                {
+                    if (Regex.IsMatch(txtPass.Text, pattern))
+                    {
+
+                        lblLoiMK.Text = "Mật khẩu hợp lệ";
+                        lblLoiMK.ForeColor = Color.Green;
+                        lblLoiMK.Visible = true;
+                    }
+                    else
+                    {
+                        lblLoiMK.Text = "Mật khẩu không hợp lệ ";
+                        lblLoiMK.ForeColor = Color.Red;
+                        lblLoiMK.Visible = true;
+                    }
+
                 }
                 if (txtPassConfirm.Text != "")
                 {
@@ -126,6 +148,8 @@ namespace DemoRegexReal
                     }
                 }
             }
+            else
+                lblLoiXacNhanMK.Visible = false;
         }
 
         private void txtPassConfirm_TextChanged(object sender, EventArgs e)
@@ -152,18 +176,21 @@ namespace DemoRegexReal
         private void txtSDT_TextChanged(object sender, EventArgs e)
         {
             string pattern = @"((84|0)[3|5|7|8|9])+([0-9]{8})\b";
-            if (Regex.IsMatch(txtSDT.Text, pattern))
-            {
-                lblSDT.Text = "SDT hợp lệ";
-                lblSDT.ForeColor = Color.Green;
-                lblSDT.Visible = true;
-            }
+            if (txtSDT.Text != "")
+                if (Regex.IsMatch(txtSDT.Text, pattern))
+                {
+                    lblSDT.Text = "SDT hợp lệ";
+                    lblSDT.ForeColor = Color.Green;
+                    lblSDT.Visible = true;
+                }
+                else
+                {
+                    lblSDT.Text = "SDT không hợp lệ";
+                    lblSDT.ForeColor = Color.Red;
+                    lblSDT.Visible = true;
+                }
             else
-            {
-                lblSDT.Text = "SDT không hợp lệ";
-                lblSDT.ForeColor = Color.Red;
-                lblSDT.Visible = true;
-            }
+                lblSDT.Visible = false;
         }
 
         // Mã hóa mật khẩu.
@@ -208,6 +235,12 @@ namespace DemoRegexReal
 
         private void btnDangKi_Click(object sender, EventArgs e)
         {
+
+            if (txtFullName.Text == "") 
+            { 
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                return; 
+            }
             if (txtEmail.Text != "" && txtSDT.Text != "" && txtPass.Text != "" &&
                 txtUserName.Text != "" && txtPassConfirm.Text != "" && lblLoiEmail.ForeColor == Color.Green &&
                 lblLoiMK.ForeColor == Color.Green && lblLoiTK.ForeColor == Color.Green &&

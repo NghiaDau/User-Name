@@ -8,7 +8,7 @@ namespace DemoRegexReal
     public partial class ModelUserName : DbContext
     {
         public ModelUserName()
-            : base("name=ModelUserName")
+            : base("name=ModelUserName1")
         {
         }
 
