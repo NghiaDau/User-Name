@@ -92,7 +92,7 @@ namespace DemoRegexReal
             string pattern = @"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20}";
             if (txtPass.Text != "" )
             {
-                if (!txtPass.Text.ToLower().Contains(txtUserName.Text)  )
+                if (!txtPass.Text.ToLower().Contains(txtUserName.Text.ToLower())  )
                 {
                     if ( Regex.IsMatch(txtPass.Text, pattern))
                     {
@@ -149,7 +149,10 @@ namespace DemoRegexReal
                 }
             }
             else
+            {
+                lblLoiMK.Visible = false;
                 lblLoiXacNhanMK.Visible = false;
+            }
         }
 
         private void txtPassConfirm_TextChanged(object sender, EventArgs e)
@@ -209,7 +212,7 @@ namespace DemoRegexReal
                 return builder.ToString();
             }
         }
-        // Lư dữ liệu vào database
+        // Lưu dữ liệu vào database
         private DataUser FieldInfo()
         {
             DataUser dataUser = new DataUser();
@@ -218,7 +221,8 @@ namespace DemoRegexReal
             dataUser.Email = txtEmail.Text;
             dataUser.FullName = txtFullName.Text;
             dataUser.Pasword = ComputeMD5Hash(txtPass.Text);
-            dataUser.PhoneNumber = int.Parse(txtSDT.Text);
+            dataUser.PhoneNumber = (int?)Convert.ToInt64(txtSDT.Text);
+
 
             return dataUser;
         }
@@ -231,7 +235,7 @@ namespace DemoRegexReal
             modelUserName.SaveChanges();
 
         }
-        //sdsdsd 
+        
 
         private void btnDangKi_Click(object sender, EventArgs e)
         {
@@ -256,11 +260,11 @@ namespace DemoRegexReal
                     DataUser dataUser = FieldInfo();
                     Insert(dataUser);
 
-                    MessageBox.Show("Dang ki thanhh cong");
+                    MessageBox.Show("Đăng ký thành công!");
                 }
                 else
                 {
-                    MessageBox.Show("Da Co Ton Tai TK");
+                    MessageBox.Show("Tài khoản đã tồn tại!");
                 }
             }
             else
