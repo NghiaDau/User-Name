@@ -42,7 +42,7 @@ namespace DemoRegexReal
         private void txtTenTK_TextChanged(object sender, EventArgs e)
         {
             string pattern = @"^[a-zA-Z0-9_-]{3,15}$";
-            if (txtTenTK.Text != "")
+            if (txtFullName.Text != "")
             {
                 if (Regex.IsMatch(txtUserName.Text, pattern))
                 {
@@ -90,7 +90,7 @@ namespace DemoRegexReal
 
                 if (Regex.IsMatch(txtPass.Text, pattern))
                 {
-                    if (!txtPass.Text.ToLower().Contains(txtTenTK.Text))
+                    if (!txtPass.Text.ToLower().Contains(txtUserName.Text))
                     {
 
                         lblLoiMK.Text = "Mật khẩu hợp lệ";
