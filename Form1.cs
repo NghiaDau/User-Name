@@ -236,5 +236,29 @@ namespace DemoRegexReal
             }
         }
 
+        private void btnShowPass_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnShowPass.BackgroundImage = DemoRegexReal.Properties.Resources.Eye;
+            txtPass.PasswordChar = '\0';
+        }
+
+        private void btnShowPass_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnShowPass.BackgroundImage = DemoRegexReal.Properties.Resources.Hide;
+            txtPass.PasswordChar = '*';
+        }
+
+
+        private void btnShowPassConfirm_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnShowPassConfirm.BackgroundImage = DemoRegexReal.Properties.Resources.Eye;
+            txtPassConfirm.PasswordChar = '\0';
+        }
+
+        private void btnShowPassConfirm_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnShowPassConfirm.BackgroundImage = DemoRegexReal.Properties.Resources.Hide;
+            txtPassConfirm.PasswordChar = '*';
+        }
     }
 }
