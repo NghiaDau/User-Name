@@ -87,9 +87,9 @@ namespace DemoRegexReal
             if (txtPass.Text != "")
             {
 
-                if (Regex.IsMatch(txtPass.Text, pattern))
+                if (!txtPass.Text.ToLower().Contains(txtUserName.Text))
                 {
-                    if (!txtPass.Text.ToLower().Contains(txtUserName.Text))
+                    if ( Regex.IsMatch(txtPass.Text, pattern))
                     {
 
                         lblLoiMK.Text = "Mật khẩu hợp lệ";
@@ -98,14 +98,14 @@ namespace DemoRegexReal
                     }
                     else
                     {
-                        lblLoiMK.Text = "Mật khẩu không được chứa tên tài khoản";
+                        lblLoiMK.Text = "Mật khẩu không hợp lệ ";
                         lblLoiMK.ForeColor = Color.Red;
                         lblLoiMK.Visible = true;
                     }
                 }
                 else
                 {
-                    lblLoiMK.Text = "Mật khẩu không hợp lệ";
+                    lblLoiMK.Text = "Mật khẩu không được chứa tên tài khoản";
                     lblLoiMK.ForeColor = Color.Red;
                     lblLoiMK.Visible = true;
                 }
