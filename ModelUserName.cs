@@ -12,7 +12,7 @@ namespace DemoRegexReal
         {
         }
 
-        public virtual DbSet<DataUser> DataUser { get; set; }
+        public virtual DbSet<DataUser> DataUsers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

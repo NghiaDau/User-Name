@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -49,7 +50,6 @@ namespace DemoRegexReal
                     lblLoiTK.Text = "Tài khoản hợp lệ";
                     lblLoiTK.ForeColor = Color.Green;
                     lblLoiTK.Visible = true;
-
                 }
                 else
                 {
@@ -70,7 +70,6 @@ namespace DemoRegexReal
                     lblLoiEmail.Text = "Email hợp lệ";
                     lblLoiEmail.ForeColor = Color.Green;
                     lblLoiEmail.Visible = true;
-
                 }
                 else
                 {
@@ -132,7 +131,7 @@ namespace DemoRegexReal
         private void txtPassConfirm_TextChanged(object sender, EventArgs e)
         {
 
-            if (txtPass.Text != "") 
+            if (txtPass.Text != "")
 
             {
                 if (txtPass.Text != txtPassConfirm.Text)
@@ -140,7 +139,6 @@ namespace DemoRegexReal
                     lblLoiXacNhanMK.Text = "Mật khẩu không khớp";
                     lblLoiXacNhanMK.ForeColor = Color.Red;
                     lblLoiXacNhanMK.Visible = true;
-
                 }
                 else
                 {
@@ -168,6 +166,23 @@ namespace DemoRegexReal
             }
         }
 
+        // Mã hóa mật khẩu.
+        private string ComputeMD5Hash(string input)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    builder.Append(hashBytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+        // Lư dữ liệu vào database
         private DataUser FieldInfo()
         {
             DataUser dataUser = new DataUser();
@@ -175,20 +190,21 @@ namespace DemoRegexReal
             dataUser.UserName = txtUserName.Text;
             dataUser.Email = txtEmail.Text;
             dataUser.FullName = txtFullName.Text;
-            dataUser.Pasword = txtPass.Text;
+            dataUser.Pasword = ComputeMD5Hash(txtPass.Text);
             dataUser.PhoneNumber = int.Parse(txtSDT.Text);
 
             return dataUser;
         }
 
-        private void Insert( DataUser newUser)
+        private void Insert(DataUser newUser)
         {
 
-            modelUserName.DataUser.Add(newUser);
-            
+            modelUserName.DataUsers.Add(newUser);
+
             modelUserName.SaveChanges();
 
         }
+        //sdsdsd 
 
         private void btnDangKi_Click(object sender, EventArgs e)
         {
@@ -198,27 +214,27 @@ namespace DemoRegexReal
                 lblLoiXacNhanMK.ForeColor == Color.Green && lblSDT.ForeColor == Color.Green)
             {
                 // xu li luu vao co so du lieu
-                
-                DataUser newUser = modelUserName.DataUser.FirstOrDefault(p => p.UserName.Contains(txtUserName.Text));
 
-                if(newUser == null) {
+                DataUser newUser = modelUserName.DataUsers.FirstOrDefault(p => p.UserName.Contains(txtUserName.Text));
+
+                if (newUser == null)
+                {
 
                     DataUser dataUser = FieldInfo();
                     Insert(dataUser);
 
                     MessageBox.Show("Dang ki thanhh cong");
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Da Co Ton Tai TK");
                 }
-
-                
             }
             else
             {
                 MessageBox.Show("Đăng ký không thành công!");
             }
         }
- 
+
     }
 }

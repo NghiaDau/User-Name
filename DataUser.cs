@@ -22,7 +22,7 @@ namespace DemoRegexReal
         public string Email { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Pasword { get; set; }
 
         public int? PhoneNumber { get; set; }
