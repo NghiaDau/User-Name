@@ -72,6 +72,7 @@
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPass.Location = new System.Drawing.Point(210, 263);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(212, 22);
             this.txtPass.TabIndex = 4;
             this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
@@ -81,6 +82,7 @@
             this.txtPassConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassConfirm.Location = new System.Drawing.Point(208, 305);
             this.txtPassConfirm.Name = "txtPassConfirm";
+            this.txtPassConfirm.PasswordChar = '*';
             this.txtPassConfirm.Size = new System.Drawing.Size(212, 22);
             this.txtPassConfirm.TabIndex = 5;
             this.txtPassConfirm.TextChanged += new System.EventHandler(this.txtPassConfirm_TextChanged);
