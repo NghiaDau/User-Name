@@ -84,11 +84,22 @@ namespace DemoRegexReal
             string pattern = @"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20}";
             if (txtPass.Text != "")
             {
+
                 if (Regex.IsMatch(txtPass.Text, pattern))
                 {
-                    lblLoiMK.Text = "Mật khẩu hợp lệ";
-                    lblLoiMK.ForeColor = Color.Green;
-                    lblLoiMK.Visible = true;
+                    if (!txtPass.Text.ToLower().Contains(txtTenTK.Text))
+                    {
+
+                        lblLoiMK.Text = "Mật khẩu hợp lệ";
+                        lblLoiMK.ForeColor = Color.Green;
+                        lblLoiMK.Visible = true;
+                    }
+                    else
+                    {
+                        lblLoiMK.Text = "Mật khẩu không được chứa tên tài khoản";
+                        lblLoiMK.ForeColor = Color.Red;
+                        lblLoiMK.Visible = true;
+                    }
                 }
                 else
                 {
@@ -117,7 +128,9 @@ namespace DemoRegexReal
 
         private void txtPassConfirm_TextChanged(object sender, EventArgs e)
         {
+
             if (txtPass.Text != "") 
+
             {
                 if (txtPass.Text != txtPassConfirm.Text)
                 {
@@ -131,7 +144,7 @@ namespace DemoRegexReal
                     lblLoiXacNhanMK.Text = "Hợp lệ";
                     lblLoiXacNhanMK.ForeColor = Color.Green;
                     lblLoiXacNhanMK.Visible = true;
-                } 
+                }
             }
         }
 
@@ -160,14 +173,14 @@ namespace DemoRegexReal
                 lblLoiXacNhanMK.ForeColor == Color.Green && lblSDT.ForeColor == Color.Green)
             {
                 // xu li luu vao co so du lieu
-                MessageBox.Show("Dang ki thanhh cong");
+                MessageBox.Show("Đăng ký thành công!");
             }
             else
             {
-                MessageBox.Show("Dang ki khong thanh cong");
+                MessageBox.Show("Đăng ký không thành công!");
             }
         }
 
-       
+
     }
 }

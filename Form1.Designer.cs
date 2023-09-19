@@ -61,7 +61,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(210, 177);
+            this.txtEmail.Location = new System.Drawing.Point(208, 178);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(212, 22);
             this.txtEmail.TabIndex = 2;
@@ -70,7 +70,7 @@
             // txtPass
             // 
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass.Location = new System.Drawing.Point(210, 263);
+            this.txtPass.Location = new System.Drawing.Point(208, 266);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(212, 22);
@@ -131,7 +131,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(165, 23);
+            this.label5.Location = new System.Drawing.Point(276, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(209, 25);
             this.label5.TabIndex = 8;
@@ -140,7 +140,7 @@
             // btnDangKi
             // 
             this.btnDangKi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDangKi.Location = new System.Drawing.Point(322, 360);
+            this.btnDangKi.Location = new System.Drawing.Point(182, 356);
             this.btnDangKi.Name = "btnDangKi";
             this.btnDangKi.Size = new System.Drawing.Size(98, 35);
             this.btnDangKi.TabIndex = 6;
@@ -240,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 433);
+            this.ClientSize = new System.Drawing.Size(742, 433);
             this.Controls.Add(this.txtHoTen);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblSDT);
